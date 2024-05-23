@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+    int data;
+    struct node *next;
+}*head;
+void create(int n);
+void display();
+void create(int n){
+    struct node *newnode, *temp;
+    int d;
+    head=(struct node *)malloc(sizeof(struct node));
+    if(head==NULL){
+        printf("head is Empty");
+    }
+    scanf("%d",&d);
+    head->data=d;
+    head->next=NULL;
+    temp=head;
+    for(int i=2;i<=n;i++){
+        newnode=(struct node *)malloc(sizeof(struct node));
+        scanf("%d",&d);
+        newnode->data=d;
+        newnode->next=NULL;
+        temp->next=newnode;
+        temp=temp->next;
+    }
+}
+void display(){
+    struct node *temp;
+    temp=head;
+    while(temp!=NULL){
+        printf("%d->",temp->data);
+    
+        temp=temp->next;
+    }
+    if(temp==NULL){
+        printf("NULL");
+    }
+}
+int main() {
+    int n,d;
+    scanf("%d",&n);
+    create(n);
+    display();
+    return 0;
+}
